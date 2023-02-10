@@ -1,6 +1,23 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { humanAge } from '../features/dog';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Button from '@mui/material/Button';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#7F2525',
+      darker: '#053e85',
+    },
+  },
+});
 
 
 const DogAge = () => {
@@ -22,27 +39,49 @@ const DogAge = () => {
     setDogAge(e.target.value)
   }
 
+  const ageMenu = () => {
+    let container = [];
+    for (let i = 1; i <= 30; i++) {
+      container.push(<MenuItem value={i}>{i}</MenuItem>)
+    }
+    return container
+  }
+
   return (
-    <div className='dogAge'>
-      <form>
-        <label htmlFor="dogName">Your Dog's name</label>
-        <input type="text" id="dogName" value={dogName} onChange={handleNameChange} />
-        <br />
-        <label htmlFor="dogAge">Your Dog's age</label>
-        <input type="text" id="dogAge" value={dogAge} onChange={handleAgeChange} />
-        <br />
-        <button
-          type="button"
+    <Box 
+      className='dog'
+      component="form"
+    >
+      <Box sx={{ minWidth: 120, mt: 3 }}>
+        <TextField id="dogName" label="Your dog's name" variant="outlined" onChange={handleNameChange} />
+      </Box>
+      <Box sx={{ minWidth: 120, mt: 3 }}>
+        <FormControl sx={{ width: 100 }}>
+          <InputLabel id="dogAge">Age</InputLabel>
+          <Select
+            labelId="dogAge"
+            id="dogAge"
+            value={dogAge}
+            label="Age"
+            onChange={handleAgeChange}
+          >
+            {ageMenu()}
+          </Select>
+        </FormControl>
+      </Box>
+      <ThemeProvider theme={theme}>
+        <Button 
+          variant="outlined"
           onClick={() => {
             // console.log(dogName)
             handleClick();
           }}
+          sx={{ mt: 5, color: "primary" }}
         >
           Get age!
-        </button>
-      </form>
-      
-    </div>
+        </Button>
+      </ThemeProvider>
+    </Box>
   )
 }
 

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  margin-top: 100px;
 }
 
 .App-logo {
@@ -35,4 +36,13 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.css-6hp17o-MuiList-root-MuiMenu-list {
+  height: 200px;
+}
+
+h2 {
+  font-family: 'Varela Round', sans-serif;
+  color: rgb(127, 37, 37);
 }
