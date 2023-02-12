@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useSelector } from 'react-redux'
 import { FaDog } from "react-icons/fa"
+import Box from '@mui/material/Box';
 
 
 const HumanAge = () => {
@@ -22,10 +23,10 @@ const HumanAge = () => {
   return (
     <div className='humanAge'>
       {dog.name && 
-        <div>
+        <Box sx={{ mb: 5 }}>
           <h2>{dog.name} is {dog.age * 7} human years old <FaDog/></h2>
           <img src={image()} alt="yomi" width="340px"/>
-        </div>
+        </Box>
       }
     </div>
   )
